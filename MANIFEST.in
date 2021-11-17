@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include airflow *.css
+recursive-include airflow *.csv
+recursive-include airflow *.html
+recursive-include airflow *.ico
+recursive-include airflow *.js
+recursive-include airflow *.json
+recursive-include airflow *.md
+recursive-include airflow *.png
+recursive-include airflow *.py
+recursive-include airflow *.svg
+recursive-include airflow *.txt
+recursive-exclude airflow *.pyc
