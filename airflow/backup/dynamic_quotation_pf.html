@@ -1,0 +1,292 @@
+{%- macro add_header(page_num, max_pages, doc, letter_head, no_letterhead) -%}
+    {% if letter_head and not no_letterhead %}
+    <div id="header-html" class="print-heading">{{ letter_head }}</div>
+    {% endif %}
+    {% if max_pages > 1 %}
+    <p class="text-right">{{ _("Page {0} of {1}").format(page_num, max_pages) }}</p>
+    {% endif %}
+    <meta name="pdfkit-orientation" content="Landscape"/>
+{%- endmacro -%}
+{{ add_header(0,1,doc,letter_head, no_letterhead) }}
+<br><br>
+    <table border="1px" style="margin-top:-1px; width=80%;">
+        <tr width="80%">
+            <td width="10%"><b>TO</b></td>
+            <td width="30%"><b>{{doc.customer_name}}</b></td>
+            <td width="20%"><b>PAGE #</b></td>
+            <td width="20%"><b></b></td>
+        </tr>
+        <tr width="80%">
+            <td><b>ADDRESS</b></td>
+            <td colspan="3"><b>{{doc.address_display}}</b></td>
+        </tr>
+        <tr width="80%">
+            <td width="10%"><b>PHONE NO</b></td>
+            <td width="30%"><b>{{doc.contact_mobile}}</b></td>
+            <td width="20%"><b>DATE</b></td>
+            <td width="20%"><b>{{doc.get_formatted('transaction_date')}}</b></td>
+        </tr>
+        <tr width="80%">
+            <td width="10%"><b>KIND ATTN</b></td>
+            <td width="30%"><b>{{doc.contact_display}}</b></td>
+            <td width="20%"><b>FROM</b></td>
+            <td width="20%"><b> {{doc.company}}</b></td>
+        </tr>
+        <tr width="80%">
+            <td width="10%"><b>EMAIL </b></td>
+            <td width="30%"><b>{{doc.contact_email}}</b></td>
+            <td width="20%"><b>REF:</b></td>
+            <td width="20%"><b>{{doc.ref}}</b></td>
+        </tr>
+        <tr width="80%">
+            <td><b>SUBJECT</b></td>
+            <td colspan="3"><b>{{doc.subject}}</b></td>
+        </tr>
+        <tr width="80%">
+            <td><b>Job</b></td>
+            <td colspan="3"><b>{{doc.job}}</b></td>
+        </tr>
+    </table><br>
+    <div>We thank you for your enquiry for above subject. As desired, we are submitting our offer for the same as under:</div><br>
+    <table border="1px" style="margin-top:-1px; width:100%">
+        <tr style="text-align:center;">
+            <th style="width:2%; text-align:center;">S. No</th>
+            {% if doc.capacity_cfm %}
+            <th style="width:2%; text-align:center;">Capacity <br> CFM </th>
+            {% endif %}
+            {% if doc.capacity_cmh %}
+            <th style="width:2%; text-align:center;">Capacity <br> CMH</th>
+            {% endif %}
+            {% if doc.outlet_area %}
+            <th style="width:2%; text-align:center;">Outlet<br>Area</th>
+            {% endif %}
+            {% if doc.area %}
+            <th style="width:2%; text-align:center;">Area</th>
+            {% endif %}
+            {% if doc.quantity %}
+            <th style="width:2%; text-align:center;">Qty</th>
+            {% endif %}
+            {% if doc.static_pr %}
+            <th style="width:2%; text-align:center;">Static <br> Pr. (mmwg) </th>
+            {% endif %}
+            {% if doc.vel_pr %}
+            <th style="width:2%; text-align:center;">Vel <br> Pr</th>
+            {% endif %}
+            {% if doc.suggested_bkw %}
+            <th style="width:2%; text-align:center;">Suggested <br> BKW</th>
+            {% endif %}
+            {% if doc.efficiency %}
+            <th style="width:2%; text-align:center;">Efficiency</th>
+            {% endif %}
+            {% if doc.fan_type %}
+            <th style="width:15%; text-align:center;">Fan Type</th>
+            {% endif %}
+            {% if doc.fan_model %}
+            <th style="width:2%; text-align:center;">Fan Model</th>
+            {% endif %}
+            {% if doc.fan_dia %}
+            <th style="width:2%; text-align:center;">Fan Dia <br> (mm)</th>
+            {% endif %}
+            {% if doc.fan_length %}
+            <th style="width:2%; text-align:center;">Fan Length</th>
+            {% endif %}
+            {% if doc.fan_weight %}
+            <th style="width:2%; text-align:center;">Fan Weight</th>
+            {% endif %}
+            {% if doc.fan_height %}
+            <th style="width:2%; text-align:center;">Fan Height</th>
+            {% endif %}
+            {% if doc.fan_qty %}
+            <th style="width:2%; text-align:center;">Fan Qty</th>
+            {% endif %}
+            {% if doc.fan_bkw %}
+            <th style="width:2%; text-align:center;">Fan BKW</th>
+            {% endif %}
+            {% if doc.fan_rpm_1 %}
+            <th style="width:2%; text-align:center;">Fan RPM</th>
+            {% endif %}
+            {% if doc.no_of_blades %}
+            <th style="width:2%; text-align:center;">No.of.Blades</th>
+            {% endif %}
+            {% if doc.blade_angle %}
+            <th style="width:2%; text-align:center;">Blade Angle</th>
+            {% endif %}
+            {% if doc.ovms %}
+            <th style="width:2%; text-align:center;">O/V (M/s)</th>
+            {% endif %}
+            {% if doc.motor_kw_rpm %}
+            <th style="width:2%; text-align:center;">Motor <br> (K.W / RPM )</th>
+            {% endif %}
+            {% if doc.pole %}
+            <th style="width:2%; text-align:center;">Pole</th>
+            {% endif %}
+             {% if doc.impeller_blade %}
+            <th style="width:2%; text-align:center;">Impellar Blade</th>
+            {% endif %}
+            {% if doc.mounting %}
+            <th style="width:2%; text-align:center;">Mounting</th>
+            {% endif %}
+             {% if doc.noise__source %}
+            <th style="width:2%; text-align:center;">Noise Source</th>
+            {% endif %}
+            {% if doc.noise_level_1mtr %}
+            <th style="width:2%; text-align:center;">Noise Level <br> @ 1Mtr</th>
+            {% endif %}
+            {% if doc.noise_level_2mtr %}
+            <th style="width:2%; text-align:center;">Noise Level <br> @ 2Mtr</th>
+            {% endif %}
+            {% if doc.noise_level_3mtr %}
+            <th style="width:2%; text-align:center;">Noise Level <br> @ 3Mtr</th>
+            {% endif %}
+            {% if doc.noise_level_after_sa_3mtr %}
+            <th style="width:2%; text-align:center;">Noise Level <br> After SA 3Mtr</th>
+            {% endif %}
+            {% if doc.insulation %}
+            <th style="width:2%; text-align:center;">Insulation</th>
+            {% endif %}
+            {% if doc.rate_rs %}
+            <th style="width:2%; text-align:center;">Rate-Rs</th>
+            {% endif %}
+            {% if doc.discount_percentage %}
+            <th style="width:2%; text-align:center;">Disc</th>
+            {% endif %}
+            {% if doc.amount_rs %}
+            <th style="width:2%; text-align:center;">Amount-Rs</th>
+            {% endif %}
+        </tr>
+      {%- for row in doc.items -%}
+        <tr style="text-align:center;">
+            <td style="width:2%;"> {% if row.idx%}{{ row.idx}} {% endif %}</td>
+            {% if doc.capacity_cfm %}
+            <td style="width:2%;"> {% if row.capacity_cfm %}{{ row.capacity_cfm }}{% endif %}</td>
+             {% endif %}
+             {% if doc.capacity_cmh %}
+            <td style="width:2%;"> {% if row.capacity_cmh %}{{ row.capacity_cmh }}{% endif %}</td>
+             {% endif %}
+             {% if doc.outlet_area %}
+            <td style="width:2%;"> {% if row.outlet_area and row.fan_type in ['Double Skin'] %}{{ row.outlet_area }}{% endif %}</td>
+             {% endif %}
+            {% if doc.area %}
+            <td style="width:2%;"> {% if row.area %}{{ row.area }}{% endif %}</td>
+             {% endif %}
+            {% if doc.quantity %}
+            <td style="width:2%;"> {% if row.qty %}{{ row.qty}}{% endif %}</td>
+            {% endif %}
+            {% if doc.static_pr %}
+            <td style="width:2%;"> {% if row.static_pr %} {{ row.static_pr}}{% endif %}</td>
+            {% endif %}
+            {% if doc.vel_pr %}
+            <td style="width:2%;"> {% if row.vel_pr %} {{ row.vel_pr}}{% endif %}</td>
+            {% endif %}
+            {% if doc.suggested_bkw %}
+            <td style="width:2%;"> {% if row.suggested_bkw %} {{ row.suggested_bkw}}{% endif %}</td>
+            {% endif %}
+            {% if doc.efficiency %}
+            <td style="width:2%;"> {% if row.efficiency %} {{ row.efficiency}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_type %}
+            <td style="width:15%;"> {% if row.fan_type %}{{ row.fan_type}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_model %}
+            <td style="width:2%;"> {% if row.fan_model %}{{ row.fan_model}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_dia %}
+            <td style="width:2%;"> {% if row.fan_dia_ %}{{ row.fan_dia_}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_length %}
+            <td style="width:2%;"> {% if row.fan_length %}{{ row.fan_length}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_weight %}
+            <td style="width:2%;"> {% if row.fan_weight %}{{ row.fan_weight}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_height %}
+            <td style="width:2%;"> {% if row.fa_height %}{{ row.fa_height}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_qty %}
+            <td style="width:2%;"> {% if row.qty %}{{ row.qty}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_bkw %}
+            <td style="width:2%;"> {% if row.fan_bkw %}{{ row.fan_bkw}}{% endif %}</td>
+            {% endif %}
+            {% if doc.fan_rpm_1 %}
+            <td style="width:2%;"> {% if row.fan_rpm %}{{ row.fan_rpm}}{% endif %}</td>
+            {% endif %}
+            {% if doc.no_of_blades %}
+            <td style="width:2%;"> {% if row.no__of_blades %}{{ row.no__of_blades}}{% endif %}</td>
+            {% endif %}
+            {% if doc.blade_angle %}
+            <td style="width:2%;"> {% if row.blade_angle %}{{ row.blade_angle}}{% endif %}</td>
+            {% endif %}
+            {% if doc.ovms %}
+            <td style="width:2%;"> {% if row.item_group in ['Inline Fan'] %} - {% else %} {{ row.o_v_m_s}} {% endif %}</td>
+            {% endif %}
+            {% if doc.motor_kw_rpm %}
+            <td style="width:2%;"> {% if row.motor_kw %}{{ row.motor_kw}} / {{row.motor_rpm }} {% endif %}</td>
+            {% endif %}
+              {% if doc.pole %}
+            <td style="width:2%;"> {% if row.pole %}{{ row.pole}}{% endif %}</td>
+            {% endif %}
+             {% if doc.impeller_blade %}
+            <td style="width:2%;"> {% if row.impeller_blade %}{{ row.impeller_blade}}{% endif %}</td>
+            {% endif %}
+            {% if doc.mounting %}
+            <td style="width:2%;"> {% if row.mounting %}{{ row.mounting}}{% endif %}</td>
+            {% endif %}
+            {% if doc.noise__source %}
+            <td style="width:2%;"> {% if row.noise__source %}{{ row.noise__source}}{% endif %}</td>
+            {% endif %}
+            {% if doc.noise_level_1mtr %}
+            <td style="width:2%;"> {% if row.noise_level_1mtr %}{{ row.noise_level_1mtr}}{% endif %}</td>
+            {% endif %}
+            {% if doc.noise_level_2mtr %}
+            <td style="width:2%;"> {% if row.noise_level_2mtr %}{{ row.noise_level_2mtr}}{% endif %}</td>
+            {% endif %}
+            {% if doc.noise_level_3mtr %}
+            <td style="width:2%;"> {% if row.noise_level_3mtr %}{{ row.noise_level_3mtr}}{% endif %}</td>
+            {% endif %}
+            {% if doc.noise_level_after_sa_3mtr %}
+            <td style="width:2%;"> {% if row.noise_level_after_sa_3mtr %}{{ row.noise_level_after_sa_3mtr}}{% endif %}</td>
+            {% endif %}
+            {% if doc.insulation %}
+            <td style="width:2%;"> {% if row.insulation %} Class {{ row.class}} / {{ row.insulation}}{% endif %}</td>
+            {% endif %}
+            {% if doc.rate_rs %}
+            <td style="width:2%;"> {% if row.rate %} {{ row.get_formatted('rate') }}{% endif %}</td>
+            {% endif %}
+            {% if doc.discount_percentage %}
+            <td style="width:2%;"> {% if row.discount_percentage%}{{ row.discount_percentage}} {% endif %}</td>
+            {% endif %}
+            {% if doc.amount_rs %}
+            <td style="width:2%;"> {% if row.amount %}{{ row.get_formatted('amount')}}{% endif %}</td>
+            {% endif %}
+        </tr>
+      {%- endfor -%}
+        <tr>
+            <td style="width:2%; text-align:right;" colspan="14"><b>Total</b></td>
+            <td style="width:2%; text-align:center;" colspan="1"><b>{{doc.get_formatted('total')}}</b></td>
+        </tr>
+        {%- for row in doc.taxes -%}
+        <tr>
+            <td style="width:2%; text-align:right;" colspan="14"><b>{% if row.account_head %}{{ row.account_head}} {% endif %}</b></td>
+            <td style="width:2%; text-align:center;" colspan="1"><b>{% if row.tax_amount %}{{ row.get_formatted('tax_amount') }} {% endif %}</b></td>
+        </tr>
+        {%- endfor -%}
+        <tr>
+            <td style="width:2%; text-align:right;" colspan="14"><b>Grand Total</b></td>
+            <td style="width:2%; text-align:center;" colspan="1"><b>{{doc.get_formatted('rounded_total')}}</b></td>
+        </tr>
+   </table>
+   <br><br>
+   {% if doc.terms %}
+    <div style="text-align:left; font-family: Century Gothic;">
+        {{doc.terms}}
+    </div>
+    {% endif %}
+    <div id="footer-html" class="visible-pdf">
+        {% if footer and not no_letterhead %}
+            <div id="htmlfooter"> {{ footer }} </div>
+        {% endif %}
+        <p class="text-center small page-number visible-pdf">
+			{{ _("Page {0} of {1}").format('<span class="page"></span>', '<span class="topage"></span>') }}
+		</p>
+    </div>
